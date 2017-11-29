@@ -1,6 +1,6 @@
 /*
 	InstructionFactory.cpp
-	Frank Cline
+	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	28 Nov 2017
 
 	cpp file for factory that creates instruction converters

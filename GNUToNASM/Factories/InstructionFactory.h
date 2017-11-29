@@ -1,6 +1,6 @@
 /*
 	InstructionFactory.h
-	Frank Cline
+	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	28 Nov 2017
 
 	header file for factory that creates converters

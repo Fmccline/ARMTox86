@@ -1,6 +1,6 @@
 /*
 	GNULexer.h
-	Frank Cline
+	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	27 Nov 2017
 
 	Header file for GNU lexer

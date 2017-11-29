@@ -1,6 +1,6 @@
 /*
 	GNUToNASM.h
-	Frank Cline
+	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	27 Nov 2017
 
 	Header file for ARM to x86 converter

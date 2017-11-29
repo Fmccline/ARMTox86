@@ -1,6 +1,6 @@
 /*
 	main.cpp
-	Frank Cline
+	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	27 Nov 2017
 
 	main file for converting GNU assembly to NASM assembly
