@@ -26,7 +26,7 @@ string AddConverter::Convert()
 	}
 	if (_param0 != _param1)
 	{
-		convertion += "mov " + _param0 + "," + _param1;
+		convertion += "mov " + _param0 + "," + _param1 + "\n";
 	}
 	convertion += "add " + _param0 + "," + _param2 + "\n";
 
