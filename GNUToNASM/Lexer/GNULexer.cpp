@@ -61,6 +61,10 @@ char GNULexer::getNextValidCharacter()
 
 // GetNextLexeme
 // returns the next lexeme in the input string
+// Pre:
+// 		Input is valid ARM code
+// Post:
+//		Returns next lexeme in input with constants and registers converted to x86
 string GNULexer::GetNextLexeme()
 {
 	// skip whitespace to next character
@@ -81,5 +85,7 @@ string GNULexer::GetNextLexeme()
 			character = getNextCharacter();
 		}
 	}
-	return lexeme;
+	// Converts the lexeme from ARM constant or register to x86 constant or register
+	LexemeConverter lexemeConverter(lexeme);
+	return lexemeConverter.Convert();
 }

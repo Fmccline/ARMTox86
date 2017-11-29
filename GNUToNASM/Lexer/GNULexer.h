@@ -9,10 +9,11 @@
 #ifndef GNU_LEXER_H_INCLUDED
 #define GNU_LEXER_H_INCLUDED
 
+#include "../Converters/LexemeConverter.h"
 #include <string>
 
 // GNULexer
-// Takes in a string of GNU code and splits the code into lexemes
+// Takes in a string of GNU code and splits the code into lexemes	
 class GNULexer
 {
 private:

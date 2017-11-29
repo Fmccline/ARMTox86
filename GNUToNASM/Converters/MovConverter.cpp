@@ -18,9 +18,5 @@ MovConverter::MovConverter(shared_ptr<GNULexer> & lexer)
 
 string MovConverter::Convert()
 {
-	if (_param1[0] == '#')
-	{
-		_param1 = _param1.substr(1,_param1.length());
-	}
 	return "mov " + _param0 + "," + _param1 + "\n";
 }

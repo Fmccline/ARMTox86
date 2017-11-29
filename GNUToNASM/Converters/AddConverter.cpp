@@ -20,10 +20,7 @@ AddConverter::AddConverter(shared_ptr<GNULexer> & lexer)
 string AddConverter::Convert()
 {
 	string convertion;
-	if (_param2[0] == '#')
-	{
-		_param2 = _param2.substr(1,_param2.length());
-	}
+
 	if (_param0 != _param1)
 	{
 		convertion += "mov " + _param0 + "," + _param1 + "\n";
