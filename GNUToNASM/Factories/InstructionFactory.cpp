@@ -16,7 +16,7 @@ using std::move;
 InstructionFactory::InstructionFactory(shared_ptr<GNULexer> & lexer)
 	: _MOV { {"mov",true}, {"adr",true}, {"ldr",true} },
 	  _PUSH { {"push", true} },
-	  _ADD { {"add", true} }
+	  _ARITHMETIC { {"add", true}, {"mul", true}, {"sub", true} }
 {
 	_lexer = lexer; 
 }
@@ -35,9 +35,9 @@ shared_ptr<Converter> InstructionFactory::MakeInstructionConverter(string lexeme
 	{
 		converter = make_shared<PushConverter>(_lexer);
 	}
-	else if (_ADD.count(lexeme))
+	else if (_ARITHMETIC.count(lexeme))
 	{
-		converter = make_shared<AddConverter>(_lexer);
+		converter = make_shared<ArithmeticConverter>(_lexer,lexeme);
 	}
 	return converter;
 }

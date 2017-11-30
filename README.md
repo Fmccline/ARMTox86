@@ -3,7 +3,7 @@ This program takes in a string of ARM assembly code, and it converts the code to
 
 Instructions Done:  
 mov  
-add  
+add, mul, sub  
 push  
 
 Instructions Needed:
