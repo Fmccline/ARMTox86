@@ -3,7 +3,7 @@
 	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	27 Nov 2017
 
-	main file for converting GNU assembly to NASM assembly
+	main file for converting ARM assembly to x86 assembly
 */
 #include "GNUToNASM.h"
 #include <iostream>
@@ -19,7 +19,8 @@ using std::exception;
 
 int main()
 {
-	string input = "add r0,r1,r2\nadd r0,r0,r1\npush {r0,r1}\nmov r0,r2\nmov r0,#32\npop {r0,r1}";
+	string input = "add r0,r1,r2\nadd r3,r4,#140\npush {r0,r1}\npush {r6,r7}\nmov r0,r2\nmov r0,#325";
 	auto converter = make_shared<GNUToNASMConverter>(input);
-	cout << converter->Convert() << endl;
+	cout << "INPUT\n" << input << endl << endl;
+	cout << "OUTPUT\n" << converter->Convert() << endl;
 }

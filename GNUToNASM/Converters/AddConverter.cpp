@@ -17,6 +17,8 @@ AddConverter::AddConverter(shared_ptr<GNULexer> & lexer)
 	_param2 = _lexer->GetNextLexeme();
 }
 
+// Convert
+// converts the ARM add instruction to x86
 string AddConverter::Convert()
 {
 	string convertion;

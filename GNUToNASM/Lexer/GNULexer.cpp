@@ -73,7 +73,7 @@ string GNULexer::GetNextLexeme()
 
 	// While the character is valid, add it to the lexeme
 	char character = getNextValidCharacter();
-	while (!IsEndOfInput() && isValid(character))
+	while (character != 0 && isValid(character))
 	{
 		if (isWhitespace(character))
 		{

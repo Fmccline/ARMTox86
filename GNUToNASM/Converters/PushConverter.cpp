@@ -16,6 +16,8 @@ PushConverter::PushConverter(shared_ptr<GNULexer> & lexer)
 	setParameters();
 }
 
+// Convert
+// converts an ARM push instruction to an x86 instruction
 string PushConverter::Convert()
 {
 	string convertion = "";
@@ -26,6 +28,8 @@ string PushConverter::Convert()
 	return convertion;
 }
 
+// setParameters
+// sets a list of paramters that will be each be called with push
 void PushConverter::setParameters()
 {
 	string lexeme = _lexer->GetNextLexeme();
@@ -36,7 +40,7 @@ void PushConverter::setParameters()
 	{
 		parameter = lexeme.substr(1,lexeme.length()-1);
 	}
-	else if (lexeme.find("}"))
+	else if (lexeme[lexeme.length()-1] == '}')
 	{
 		parameter = lexeme.substr(0,lexeme.length()-1);
 		moreParameters = false;

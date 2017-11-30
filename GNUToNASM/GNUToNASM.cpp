@@ -16,13 +16,15 @@ GNUToNASMConverter::GNUToNASMConverter(string gnuCode)
 	_instructionFactory = make_shared<InstructionFactory>(_lexer);
 }
 
+// Convert
+// converts the given ARM code to x86 assembly
 string GNUToNASMConverter::Convert()
 {
 	string lexeme, nasmCode;
 	while (true) 
 	{
 		lexeme = _lexer->GetNextLexeme();
-		nasmCode += ".." + convertLexeme(lexeme);
+		nasmCode += convertLexeme(lexeme);
 		if (_lexer->IsEndOfInput())
 		{
 			break;
@@ -31,6 +33,8 @@ string GNUToNASMConverter::Convert()
 	return nasmCode;
 }
 
+// convertLexeme
+// creates an instruction converter from the lexeme and returns the convertion
 string GNUToNASMConverter::convertLexeme(std::string lexeme)
 {
 	auto instructionConverter = _instructionFactory->MakeInstructionConverter(lexeme);

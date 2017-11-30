@@ -16,6 +16,8 @@ MovConverter::MovConverter(shared_ptr<GNULexer> & lexer)
 	_param1 = _lexer->GetNextLexeme();
 }
 
+// Convert
+// converts the ARM mov instruction to x86
 string MovConverter::Convert()
 {
 	return "mov " + _param0 + "," + _param1 + "\n";

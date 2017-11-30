@@ -12,13 +12,18 @@
 #include "Converter.h"
 
 #include <memory>
+#include <unordered_map>
 #include <string>
 
-
+// LexemeConverter
+// Converts a given lexeme from an ARM constant or register to an x86 constant or register
 class LexemeConverter : public Converter
 {
 private:
+	// string that holds the lexeme to be converted
 	std::string _lexeme;
+	// table where the (key,value) pairs are (ARM registers, x86 registers)
+	const std::unordered_map<std::string,std::string> _registers;
 	std::string convertConstant();
 	std::string convertRegister();
 public:
