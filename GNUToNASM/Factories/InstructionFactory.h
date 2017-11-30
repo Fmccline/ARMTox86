@@ -11,7 +11,7 @@
 
 #include "../Converters/Converter.h"
 #include "../Converters/MovConverter.h"
-#include "../Converters/PushConverter.h"
+#include "../Converters/PushAndPopConverter.h"
 #include "../Converters/ArithmeticConverter.h"
 #include "../Lexer/GNULexer.h"
 
@@ -26,7 +26,7 @@ class InstructionFactory
 private:
 	// Constant hash tables for storing ARM instructions
 	const std::unordered_map<std::string,bool> _MOV;
-	const std::unordered_map<std::string,bool> _PUSH;
+	const std::unordered_map<std::string,bool> _PUSH_AND_POP;
 	const std::unordered_map<std::string,bool> _ARITHMETIC;
 	std::shared_ptr<GNULexer> _lexer;
 public:

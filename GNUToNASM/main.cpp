@@ -20,6 +20,8 @@ using std::exception;
 int main()
 {
 	string input;
+	input += "push {r0,r1,r2,r3}\n";
+	input += "pop {r0,r1,r2,r3}\n";
 	input += "add r0,r1,r2\n";
 	input += "add r3,r3,#140\n";
 	input += "mul r0,r1,r2\n";

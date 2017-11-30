@@ -15,7 +15,7 @@ using std::move;
 
 InstructionFactory::InstructionFactory(shared_ptr<GNULexer> & lexer)
 	: _MOV { {"mov",true}, {"adr",true}, {"ldr",true} },
-	  _PUSH { {"push", true} },
+	  _PUSH_AND_POP { {"push", true}, {"pop", true} },
 	  _ARITHMETIC { {"add", true}, {"mul", true}, {"sub", true} }
 {
 	_lexer = lexer; 
@@ -31,9 +31,9 @@ shared_ptr<Converter> InstructionFactory::MakeInstructionConverter(string lexeme
 	{
 		converter = make_shared<MovConverter>(_lexer);
 	}
-	else if (_PUSH.count(lexeme))
+	else if (_PUSH_AND_POP.count(lexeme))
 	{
-		converter = make_shared<PushConverter>(_lexer);
+		converter = make_shared<PushAndPopConverter>(_lexer,lexeme);
 	}
 	else if (_ARITHMETIC.count(lexeme))
 	{
