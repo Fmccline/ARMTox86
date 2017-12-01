@@ -1,11 +1,11 @@
 /*
-	InstructionFactory.cpp
+	ConverterFactory.cpp
 	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	28 Nov 2017
 
 	cpp file for factory that creates instruction converters
 */
-#include "InstructionFactory.h"
+#include "ConverterFactory.h"
 using std::shared_ptr;
 using std::make_shared;
 using std::static_pointer_cast;
@@ -13,7 +13,7 @@ using std::string;
 using std::move;
 
 
-InstructionFactory::InstructionFactory(shared_ptr<GNULexer> & lexer)
+ConverterFactory::ConverterFactory(shared_ptr<GNULexer> & lexer)
 	: _MOV { {"mov",true}, {"adr",true}, {"ldr",true} },
 	  _PUSH_AND_POP { {"push", true}, {"pop", true} },
 	  _ARITHMETIC { {"add", true}, {"mul", true}, {"sub", true} }
@@ -21,10 +21,10 @@ InstructionFactory::InstructionFactory(shared_ptr<GNULexer> & lexer)
 	_lexer = lexer; 
 }
 
-// MakeInstructionConverter
+// MakeConverter
 // returns a converter that will convert the given lexeme correctly
-// when converters are created, they should be added here
-shared_ptr<Converter> InstructionFactory::MakeInstructionConverter(string lexeme)
+// when new converters are created, they should be added here
+shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 {
 	shared_ptr<Converter> converter = 0;
 	if (_MOV.count(lexeme))

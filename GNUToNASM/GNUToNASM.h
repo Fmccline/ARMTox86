@@ -11,7 +11,7 @@
 
 #include "Converters/Converter.h"
 #include "Lexer/GNULexer.h"
-#include "Factories/InstructionFactory.h"
+#include "Factories/ConverterFactory.h"
 
 #include <memory>
 #include <string>
@@ -23,7 +23,7 @@ class GNUToNASMConverter : public Converter
 {
 private:
 	std::shared_ptr<GNULexer> _lexer;
-	std::shared_ptr<InstructionFactory> _instructionFactory;
+	std::shared_ptr<ConverterFactory> _converterFactory;
 	std::string convertLexeme(std::string lexeme);
 public:
 	GNUToNASMConverter(std::string gnuCode);

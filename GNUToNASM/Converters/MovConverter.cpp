@@ -8,6 +8,8 @@
 #include "MovConverter.h"
 using std::shared_ptr;
 using std::string;
+using std::make_pair;
+using std::pair;
 
 MovConverter::MovConverter(shared_ptr<GNULexer> & lexer)
 {
@@ -21,4 +23,11 @@ MovConverter::MovConverter(shared_ptr<GNULexer> & lexer)
 string MovConverter::Convert()
 {
 	return "mov " + _param0 + "," + _param1 + "\n";
+}
+
+// GetConditionalParameters
+// retuns the parameters to be compared for conditional suffixes
+pair<string,string> MovConverter::GetConditionalParameters()
+{
+	return make_pair(_param0,_param1);
 }

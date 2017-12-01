@@ -9,14 +9,14 @@
 #ifndef MOV_CONVERTER_H_INCLUDED
 #define MOV_CONVERTER_H_INCLUDED
 
-#include "Converter.h"
+#include "InstructionConverter.h"
 #include "../Lexer/GNULexer.h"
 
 #include <memory>
 #include <string>
 
 
-class MovConverter : public Converter
+class MovConverter : public InstructionConverter
 {
 private:
 	std::shared_ptr<GNULexer> _lexer;
@@ -24,6 +24,7 @@ private:
 public:
 	MovConverter(std::shared_ptr<GNULexer> & lexer);
 	std::string Convert() override;
+	std::pair<std::string,std::string> GetConditionalParameters() override;
 };
 
 #endif // MOV_CONVERTER_H_INCLUDED

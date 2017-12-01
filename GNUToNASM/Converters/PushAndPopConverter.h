@@ -9,7 +9,7 @@
 #ifndef PUSH_AND_POP_CONVERTER_H_INCLUDED
 #define PUSH_AND_POP_CONVERTER_H_INCLUDED
 
-#include "Converter.h"
+#include "InstructionConverter.h"
 #include "../Lexer/GNULexer.h"
 
 #include <memory>
@@ -19,7 +19,7 @@
 
 // PushConverter
 // Converts the GNU push instruction to NASM
-class PushAndPopConverter : public Converter
+class PushAndPopConverter : public InstructionConverter
 {
 private:
 	std::shared_ptr<GNULexer> _lexer;

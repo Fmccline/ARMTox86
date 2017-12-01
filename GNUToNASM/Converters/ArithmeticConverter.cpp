@@ -8,6 +8,8 @@
 #include "ArithmeticConverter.h"
 using std::shared_ptr;
 using std::string;
+using std::make_pair;
+using std::pair;
 
 ArithmeticConverter::ArithmeticConverter(shared_ptr<GNULexer> & lexer, string instruction)
 {
@@ -35,4 +37,11 @@ string ArithmeticConverter::Convert()
 	convertion += _instruction + " " + _param0 + "," + _param2 + "\n";
 
 	return convertion;
+}
+
+// GetConditionalParameters
+// retuns the parameters to be compared for conditional suffixes
+pair<string,string> ArithmeticConverter::GetConditionalParameters()
+{
+	return make_pair(_param1,_param2);
 }

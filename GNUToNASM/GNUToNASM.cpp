@@ -13,7 +13,7 @@ using std::string;
 GNUToNASMConverter::GNUToNASMConverter(string gnuCode)
 {
 	_lexer = make_shared<GNULexer>(gnuCode);
-	_instructionFactory = make_shared<InstructionFactory>(_lexer);
+	_converterFactory = make_shared<ConverterFactory>(_lexer);
 }
 
 // Convert
@@ -34,13 +34,13 @@ string GNUToNASMConverter::Convert()
 }
 
 // convertLexeme
-// creates an instruction converter from the lexeme and returns the convertion
+// creates a converter from the lexeme and returns the convertion
 string GNUToNASMConverter::convertLexeme(std::string lexeme)
 {
-	auto instructionConverter = _instructionFactory->MakeInstructionConverter(lexeme);
-	if (instructionConverter)
+	auto converter = _converterFactory->MakeConverter(lexeme);
+	if (converter)
 	{
-		return instructionConverter->Convert();
+		return converter->Convert();
 	}
 	else
 	{

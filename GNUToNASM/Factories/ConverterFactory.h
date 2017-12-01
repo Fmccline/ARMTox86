@@ -1,13 +1,13 @@
 /*
-	InstructionFactory.h
+	ConverterFactory.h
 	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	28 Nov 2017
 
 	header file for factory that creates converters
 */
 
-#ifndef INSTRUCTION_FACTORY_H_INCLUDED
-#define INSTRUCTION_FACTORY_H_INCLUDED
+#ifndef CONVERTER_FACTORY_H_INCLUDED
+#define CONVERTER_FACTORY_H_INCLUDED
 
 #include "../Converters/Converter.h"
 #include "../Converters/MovConverter.h"
@@ -19,9 +19,9 @@
 #include <string>
 #include <unordered_map>
 
-// InstructionFactory
+// ConverterFactory
 // Creates an instruction converter given a lexeme
-class InstructionFactory
+class ConverterFactory
 {
 private:
 	// Constant hash tables for storing ARM instructions
@@ -30,8 +30,8 @@ private:
 	const std::unordered_map<std::string,bool> _ARITHMETIC;
 	std::shared_ptr<GNULexer> _lexer;
 public:
-	InstructionFactory(std::shared_ptr<GNULexer> & lexer);
-	std::shared_ptr<Converter> MakeInstructionConverter(std::string lexeme);
+	ConverterFactory(std::shared_ptr<GNULexer> & lexer);
+	std::shared_ptr<Converter> MakeConverter(std::string lexeme);
 };
 
-#endif // INSTRUCTION_FACTORY_H_INCLUDED
+#endif // CONVERTER_FACTORY_H_INCLUDED
