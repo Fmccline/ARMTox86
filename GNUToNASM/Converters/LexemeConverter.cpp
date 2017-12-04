@@ -40,14 +40,39 @@ LexemeConverter::LexemeConverter(string lexeme) : _lexeme(lexeme),
 string LexemeConverter::Convert()
 {
 	char firstChar = _lexeme[0];
+	char lastChar = _lexeme[_lexeme.length()-1];
+	// check if lexeme is a constant
 	if (firstChar == '#')
 	{
 		return convertConstant();
 	}
-	else if (firstChar == 'r' || firstChar == '{')
+	// check if lexeme is a register
+	else if (firstChar == 'r')
 	{
-		return convertRegister();
+		// check if register is the last register in a push/pop instruction
+		if (lastChar == '}')
+		{
+			string armRegister = _lexeme.substr(0,_lexeme.length()-1);
+			return convertRegister(armRegister) + '}';
+		}
+		else
+		{
+			return convertRegister(_lexeme);
+		}
 	}
+	// check if lexeme is the first register in a push/pop instruction
+	else if (firstChar == '{')
+	{
+		string armRegister = _lexeme.substr(1,_lexeme.length()-1);
+		return "{" + convertRegister(armRegister);
+	}
+	// check if lexeme is a register used in a ldr instruction
+	else if (firstChar == '[')
+	{
+		string armRegister = _lexeme.substr(1,_lexeme.length()-2);
+		return "[" + convertRegister(armRegister) + "]";
+	}
+	// else the lexeme is not a register
 	else
 	{
 		return _lexeme;
@@ -63,23 +88,7 @@ string LexemeConverter::convertConstant()
 
 // convertRegister
 // converts an ARM register to an x86 register
-string LexemeConverter::convertRegister()
+string LexemeConverter::convertRegister(const string & armRegister)
 {
-	string armRegister, x86Register;
-	int startRegister = 0;
-	int registerLength = _lexeme.length();
-
-	if (_lexeme[0] == '{')
-	{
-		registerLength = _lexeme.length() - 1;
-		startRegister = 1;
-	}
-	else if (_lexeme[_lexeme.length()-1] == '}')
-	{
-		registerLength = _lexeme.length() - 1;
-	}
-	
-	armRegister = _lexeme.substr(startRegister,registerLength);
-	x86Register = (_registers.count(armRegister)) ? _registers.at(armRegister) : armRegister;
-	return _lexeme.replace(startRegister, registerLength, x86Register); 
+	return (_registers.count(armRegister)) ? _registers.at(armRegister) : armRegister;
 }

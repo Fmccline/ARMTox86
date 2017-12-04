@@ -25,7 +25,7 @@ private:
 	// table where the (key,value) pairs are (ARM registers, x86 registers)
 	const std::unordered_map<std::string,std::string> _registers;
 	std::string convertConstant();
-	std::string convertRegister();
+	std::string convertRegister(const std::string & armRegister);
 public:
 	LexemeConverter(std::string lexeme);
 	std::string Convert() override;
