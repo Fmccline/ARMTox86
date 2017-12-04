@@ -10,4 +10,8 @@ push, pop
 branching (jumps)  
 comparisons (cmp)  
 bitwise  
-and more...
+and more...  
+
+### Features In Progress:  
+GUI  
+file input & output  
