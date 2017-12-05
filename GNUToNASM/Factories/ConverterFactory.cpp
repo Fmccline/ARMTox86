@@ -5,6 +5,9 @@
 
 	cpp file for factory that creates instruction converters
 */
+
+#include "stdafx.h"
+
 #include "ConverterFactory.h"
 using std::shared_ptr;
 using std::make_shared;
@@ -17,7 +20,12 @@ ConverterFactory::ConverterFactory(shared_ptr<GNULexer> & lexer)
 	  _PUSH_AND_POP  { {"push", true}, {"pop", true} },
 	  _ARITHMETIC 	 { {"add", true}, {"mul", true}, {"sub", true} },
 	  _CONDITIONAL   { {"eq", true}, {"ne", true}, {"lt", true}, 
-	  				   {"gt", true}, {"le", true}, {"ge", true} }
+	  				   {"gt", true}, {"le", true}, {"ge", true} },
+	  _BRANCH 		 { {"b", true}, {"beq", true}, {"bne", true}, {"blt", true}, 
+					   {"bgt", true}, {"ble", true}, {"bge", true} },
+	  _DATASIZE		 { {".data", true}, {".byte", true}, {".halfword", true}, 
+	  				   {".word", true}, {".doubleword", true} }
+	  				   
 {
 	_lexer = lexer; 
 }
@@ -32,6 +40,14 @@ shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 	if (lexeme[lexeme.length()-1] == ':')
 	{
 
+	}
+	else if (_BRANCH.count(lexeme))
+	{
+		converter = make_shared<BranchConverter>(_lexer, lexeme);
+	}
+	else if (_DATASIZE.count(lexeme))
+	{
+		converter = make_shared<DatasizeConverter>(_lexer, lexeme);
 	}
 	// Lexeme is instruction with conditional suffix
 	else if (isConditional(lexeme))
@@ -80,3 +96,4 @@ bool ConverterFactory::isConditional(std::string lexeme)
 	string conditional = lexeme.substr(lexeme.length()-2, 2);
 	return _CONDITIONAL.count(conditional);
 }
+
