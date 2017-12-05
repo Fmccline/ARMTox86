@@ -1,6 +1,6 @@
 /*
 	main.cpp
-	Authors: Frank Cline, Jason Hsi, Brandon Abbot
+	Authors: Frank Cline, Jason Hsi, Brandon Abbott
 	27 Nov 2017
 
 	main file for converting ARM assembly to x86 assembly
