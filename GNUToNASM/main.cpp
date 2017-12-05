@@ -5,7 +5,6 @@
 
 	main file for converting ARM assembly to x86 assembly
 */
-#include "GNUToNASM.h"
 #include "Test.h"
 #include <iostream>
 using std::cout;

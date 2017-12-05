@@ -10,16 +10,15 @@ using std::shared_ptr;
 using std::make_shared;
 using std::string;
 
-GNUToNASMConverter::GNUToNASMConverter(string gnuCode)
-{
-	_lexer = make_shared<GNULexer>(gnuCode);
-	_converterFactory = make_shared<ConverterFactory>(_lexer);
-}
-
 // Convert
 // converts the given ARM code to x86 assembly
 string GNUToNASMConverter::Convert()
 {
+	if (_armCode == "") return "NULL";
+
+	_lexer = make_shared<GNULexer>(_armCode);
+	_converterFactory = make_shared<ConverterFactory>(_lexer);
+
 	string lexeme, nasmCode;
 	while (true) 
 	{
@@ -46,4 +45,21 @@ string GNUToNASMConverter::convertLexeme(std::string lexeme)
 	{
 		return lexeme;
 	}
+}
+
+string GNUToNASMConverter::ConvertFromString(const string & armCode)
+{
+	_armCode = armCode;
+	Convert();
+}
+
+string GNUToNASMConverter::ConvertFromFile(const string & filename)
+{
+	_armCode = _fileInOut.readfromfile(filename);
+	Convert();
+}
+
+void GNUToNASMConverter::WriteToFile(const string & filename)
+{
+	_fileInOut.writetofile(filename,_armCode);
 }
