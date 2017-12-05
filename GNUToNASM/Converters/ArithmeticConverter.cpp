@@ -38,10 +38,3 @@ string ArithmeticConverter::Convert()
 
 	return convertion;
 }
-
-// GetConditionalParameters
-// retuns the parameters to be compared for conditional suffixes
-pair<string,string> ArithmeticConverter::GetConditionalParameters()
-{
-	return make_pair(_param1,_param2);
-}

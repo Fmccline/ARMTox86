@@ -44,16 +44,18 @@ void PushAndPopConverter::setParameters()
 {
 	string lexeme = _lexer->GetNextLexeme();
 	string parameter;
-	bool moreParameters = true;
 
-	if (lexeme[0] == '{')
+	if (lexeme[0] == '{' && lexeme[lexeme.length()-1] == '}')
+	{
+		parameter = lexeme.substr(1,lexeme.length()-2);
+	}
+	else if (lexeme[0] == '{')
 	{
 		parameter = lexeme.substr(1,lexeme.length()-1);
 	}
 	else if (lexeme[lexeme.length()-1] == '}')
 	{
 		parameter = lexeme.substr(0,lexeme.length()-1);
-		moreParameters = false;
 	}
 	else
 	{
@@ -61,7 +63,7 @@ void PushAndPopConverter::setParameters()
 	}
 	_parameters.push_back(parameter);
 
-	if (moreParameters)
+	if (lexeme[lexeme.length()-1] != '}')
 	{
 		setParameters();
 	}

@@ -7,8 +7,6 @@
 	MADE BY JASON
 */
 
-#include "stdafx.h"
-
 #include "BranchConverter.h"
 using std::shared_ptr;
 using std::string;

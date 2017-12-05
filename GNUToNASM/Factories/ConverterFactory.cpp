@@ -6,8 +6,6 @@
 	cpp file for factory that creates instruction converters
 */
 
-#include "stdafx.h"
-
 #include "ConverterFactory.h"
 using std::shared_ptr;
 using std::make_shared;
@@ -41,7 +39,7 @@ shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 	{
 
 	}
-	else if (_BRANCH.count(lexeme))
+	if (_BRANCH.count(lexeme))
 	{
 		converter = make_shared<BranchConverter>(_lexer, lexeme);
 	}
@@ -49,41 +47,31 @@ shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 	{
 		converter = make_shared<DatasizeConverter>(_lexer, lexeme);
 	}
-	// Lexeme is instruction with conditional suffix
+	// Lexeme is instruction with conditional suffix (_BRANCH.count(lexeme) must be false)
 	else if (isConditional(lexeme))
 	{
 		string conditional = lexeme.substr(lexeme.length()-2, 2);
 		string instruction = lexeme.substr(0,lexeme.length()-2);
-		auto instructionConverter = makeInstructionConverter(instruction);
+		auto instructionConverter = MakeConverter(instruction);
 		if (instructionConverter)
 		{
 			converter = make_shared<ConditionalConverter>(conditional,instructionConverter);
 		}
 	}
-	// Lexeme is instruction
-	else
+	// Lexeme is an instruction
+	else if (_MOV.count(lexeme))
 	{
-		converter = makeInstructionConverter(lexeme);
-	}
-	return converter;
-}
-
-shared_ptr<InstructionConverter> ConverterFactory::makeInstructionConverter(string lexeme)
-{
-	shared_ptr<InstructionConverter> instructionConverter = 0;
-	if (_MOV.count(lexeme))
-	{
-		instructionConverter = make_shared<MovConverter>(_lexer);
+		converter = make_shared<MovConverter>(_lexer);
 	}
 	else if (_PUSH_AND_POP.count(lexeme))
 	{
-		instructionConverter = make_shared<PushAndPopConverter>(_lexer,lexeme);
+		converter = make_shared<PushAndPopConverter>(_lexer,lexeme);
 	}
 	else if (_ARITHMETIC.count(lexeme))
 	{
-		instructionConverter = make_shared<ArithmeticConverter>(_lexer,lexeme);
+		converter = make_shared<ArithmeticConverter>(_lexer,lexeme);
 	}
-	return instructionConverter;
+	return converter;
 }
 
 bool ConverterFactory::isConditional(std::string lexeme)

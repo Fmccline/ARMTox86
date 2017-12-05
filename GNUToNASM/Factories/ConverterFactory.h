@@ -36,7 +36,6 @@ private:
 	const std::unordered_map<std::string,bool> _DATASIZE;
 	std::shared_ptr<GNULexer> _lexer;
 	bool isConditional(std::string lexeme);
-	std::shared_ptr<InstructionConverter> makeInstructionConverter(std::string lexeme);
 public:
 	ConverterFactory(std::shared_ptr<GNULexer> & lexer);
 	std::shared_ptr<Converter> MakeConverter(std::string lexeme);

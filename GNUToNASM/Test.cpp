@@ -20,7 +20,6 @@ Test::Test(const string & testName, const string & input, const string & expecte
 string Test::GetTestResults()
 {
 	string result;
-	result += "Testing " +  _testName + "...\n";
 	result += _testName + ": ";
 
 	if (_output != _expectedOutput)

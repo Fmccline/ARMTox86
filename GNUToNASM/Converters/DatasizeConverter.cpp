@@ -6,8 +6,6 @@ Authors: Frank Cline, Jason Hsi, Brandon Abbot
 cpp file for class for branch instructions
 MADE BY JASON
 */
-
-#include "stdafx.h"
 #include "DatasizeConverter.h"
 
 #include <iostream>

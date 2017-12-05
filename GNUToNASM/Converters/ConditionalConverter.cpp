@@ -13,16 +13,11 @@ using std::pair;
 
 int ConditionalConverter::_conditionalCount = 0;
 
-ConditionalConverter::ConditionalConverter(string conditional, shared_ptr<InstructionConverter> & instructionConverter)
-:_CONDITIONALS { {"eq", "e"}, {"ne", "ne"}, {"lt", "l"}, {"gt", "g"}}
+ConditionalConverter::ConditionalConverter(const std::string & conditional, shared_ptr<Converter> & instructionConverter)
+:_CONDITIONALS { {"eq", "e"}, {"lt", "l"}, {"gt", "g"}}
 {
 	_conditional = (_CONDITIONALS.count(conditional)) ? _CONDITIONALS.at(conditional) : conditional;
-	_instructionConvertion = instructionConverter->Convert();
-
-	auto parameters = instructionConverter->GetConditionalParameters();
-	_compareParam0 = parameters.first;
-	_compareParam1 = parameters.second;
-
+	_instruction = instructionConverter->Convert();
 	_conditionalCount++;
 }
 
@@ -35,12 +30,11 @@ string ConditionalConverter::Convert()
 	string isTrueLabel = "isTrue" + conditionalCount;
 	string isFalseLabel = "isFalse" + conditionalCount;
 
-	string compare = "cmp " + _compareParam0 + "," + _compareParam1 + "\n";
 	string conditional = "j" + _conditional + " " + isTrueLabel + "\n";
 	string isTrue = isTrueLabel + ":\n";
 	string isFalse = isFalseLabel + ":\n";
 	string jmpFalse = "jmp " + isFalseLabel + "\n";
 
-	convertion = compare + conditional + jmpFalse + isTrue + _instructionConvertion + isFalse;
+	convertion = conditional + jmpFalse + isTrue + _instruction + isFalse;
 	return convertion;
 }

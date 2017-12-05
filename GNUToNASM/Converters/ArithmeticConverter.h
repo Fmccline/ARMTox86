@@ -9,14 +9,14 @@
 #ifndef ARITHMETIC_CONVERTER_H_INCLUDED
 #define ARITHMETIC_CONVERTER_H_INCLUDED
 
-#include "InstructionConverter.h"
+#include "Converter.h"
 #include "../Lexer/GNULexer.h"
 
 #include <memory>
 #include <string>
 #include <utility>
 
-class ArithmeticConverter : public InstructionConverter
+class ArithmeticConverter : public Converter
 {
 private:
 	std::shared_ptr<GNULexer> _lexer;
@@ -24,7 +24,6 @@ private:
 public:
 	ArithmeticConverter(std::shared_ptr<GNULexer> & lexer, std::string instruction);
 	std::string Convert() override;
-	std::pair<std::string,std::string> GetConditionalParameters() override;
 };
 
 #endif // ARITHMETIC_CONVERTER_H_INCLUDED

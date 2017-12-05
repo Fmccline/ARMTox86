@@ -63,8 +63,11 @@ string LexemeConverter::Convert()
 	// check if lexeme is the first register in a push/pop instruction
 	else if (firstChar == '{')
 	{
-		string armRegister = _lexeme.substr(1,_lexeme.length()-1);
-		return "{" + convertRegister(armRegister);
+		bool isSingleRegister = (lastChar == '}');
+		int substrLength = isSingleRegister ? _lexeme.length()-2 : _lexeme.length()-1;
+		string armRegister = _lexeme.substr(1,substrLength);
+		string returnValue = "{" + convertRegister(armRegister);
+		return (isSingleRegister) ? returnValue + "}" : returnValue;
 	}
 	// check if lexeme is a register used in a ldr instruction
 	else if (firstChar == '[')

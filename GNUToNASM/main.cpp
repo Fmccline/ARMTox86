@@ -79,8 +79,69 @@ void testArithmetic()
 	cout << t.GetTestResults() << endl; 
 }
 
+void testPush()
+{
+	string testName, input, expectedOutput;
+
+	testName = "push instruction";
+
+	input += "push {r0}\n";
+	input += "push {r0, r1, r2,    r3}\n";
+
+	expectedOutput += "push rax\n";
+	expectedOutput += "push rax\n";
+	expectedOutput += "push rsi\n";
+	expectedOutput += "push rdx\n";
+	expectedOutput += "push r8\n";
+
+	Test t(testName, input, expectedOutput);
+	cout << t.GetTestResults() << endl;
+}
+
+void testPop()
+{
+	string testName, input, expectedOutput;
+
+	testName = "pop instruction";
+
+	input += "pop {r0}\n";
+	input += "pop {r0, r1, r2,    r3}\n";
+
+	expectedOutput += "pop rax\n";
+	expectedOutput += "pop r8\n";
+	expectedOutput += "pop rdx\n";
+	expectedOutput += "pop rsi\n";
+	expectedOutput += "pop rax\n";
+
+	Test t(testName, input, expectedOutput);
+	cout << t.GetTestResults() << endl;
+}
+
+void testCondtionals()
+{
+	string testName, input, expectedOutput;
+
+	testName = "condtional suffixes";
+
+	input += "movgt r0,r1\n";
+	input += "addlt r0,r1,r1\n";
+	input += "subeq r0,r1,r2\n";
+	input += "mulge r0,r1,r2\n";
+	input += "pushle {r0,r1,r2}\n";
+	input += "popne {r0,r1}\n";
+
+	expectedOutput += "Honestly idk\n";
+
+	Test t(testName, input, expectedOutput);
+	cout << t.GetTestResults() << endl;
+}
+
+
 int main()
 {
 	testMov();
 	testArithmetic();
+	testPush();
+	testPop();
+	testCondtionals();
 }
