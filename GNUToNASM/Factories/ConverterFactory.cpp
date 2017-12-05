@@ -8,7 +8,6 @@
 #include "ConverterFactory.h"
 using std::shared_ptr;
 using std::make_shared;
-using std::static_pointer_cast;
 using std::string;
 using std::move;
 
