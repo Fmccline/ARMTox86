@@ -34,14 +34,18 @@ shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 	{
 
 	}
-	// Lexeme is instruction
+	// Lexeme is instruction with conditional suffix
 	else if (isConditional(lexeme))
 	{
 		string conditional = lexeme.substr(lexeme.length()-2, 2);
 		string instruction = lexeme.substr(0,lexeme.length()-2);
 		auto instructionConverter = makeInstructionConverter(instruction);
-		converter = make_shared<ConditionalConverter>(conditional,instructionConverter);
+		if (instructionConverter)
+		{
+			converter = make_shared<ConditionalConverter>(conditional,instructionConverter);
+		}
 	}
+	// Lexeme is instruction
 	else
 	{
 		converter = makeInstructionConverter(lexeme);
