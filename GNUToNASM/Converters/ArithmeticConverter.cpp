@@ -35,6 +35,6 @@ string ArithmeticConverter::Convert()
 		convertion += "mov " + _param0 + "," + _param1 + "\n";
 	}
 	convertion += _instruction + " " + _param0 + "," + _param2 + "\n";
-
+	
 	return convertion;
 }

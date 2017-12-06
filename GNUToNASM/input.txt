@@ -1,0 +1,20 @@
+push {r0,r1,r11} 
+mov r0,#0 
+mov r1,#1 
+mov r2,#50 
+
+compute_256: 
+	cmp r0,r1 
+	addlt r0,r1,r1 
+	add r1,r1,r1 
+	cmp r2,r1 
+	subeq r2,r1,r0 
+	cmp r0,#100 
+	blt compute_256 
+
+mov r11,#2 
+cmp r0,#100 
+mulne r0,r0,r11
+pop {r1,r2,r11} 
+
+bx lr

@@ -11,11 +11,6 @@
 using std::shared_ptr;
 using std::string;
 
-// TODO: remove include
-#include <iostream>
-using std::endl;
-using std::cout;
-
 BranchConverter::BranchConverter(shared_ptr<GNULexer> & lexer, string instruction)
 {
 	_instruction = instruction;
@@ -27,8 +22,11 @@ BranchConverter::BranchConverter(shared_ptr<GNULexer> & lexer, string instructio
 // converts the ARM add instruction to x86
 string BranchConverter::Convert()
 {
-	cout << "0: " << _param0 << endl;
-	if (_instruction == "b") {
+	if (_instruction == "bx" && _param0 == "lr")
+	{
+		return "ret";
+	}
+	else if (_instruction == "b") {
 		_instruction = "jmp";
 	}
 	else if (_instruction == "beq") {

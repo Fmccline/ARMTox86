@@ -17,6 +17,7 @@
 #include "../Converters/BranchConverter.h"
 #include "../Converters/DatasizeConverter.h"
 #include "../Converters/BitwiseConverter.h"
+#include "../Converters/ComparisonConverter.h"
 #include "../Lexer/GNULexer.h"
 
 #include <memory>

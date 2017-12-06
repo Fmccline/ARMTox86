@@ -18,6 +18,9 @@ using std::shared_ptr;
 using std::make_shared;
 #include <exception>
 using std::exception;
+#include <fstream>
+using std::ifstream;
+using std::ofstream;
 
 void testMov()
 {
@@ -136,29 +139,19 @@ void testCondtionals()
 	cout << t.GetTestResults() << endl;
 }
 
-
 int main()
 {
-	testMov();
-	testArithmetic();
-	testPush();
-	testPop();
+	// testMov();
+	// testArithmetic();
+	// testPush();
+	// testPop();
 	// testCondtionals();
-	string inFileName = "readme.txt";
+	string inFileName = "input.txt";
 	string outFileName = "output.txt";
 
-	Fileinout fileIO;
-
-	string input;
-	input += "add r0,r1,r2\n";
-	input += "add r0,r0,#80\n";
-	input += "add r0,#80,#100\n";
-
-	//input = fileIO.readfromfile(inFileName);
-	cout << "INPUT\n" << input << endl;
-
-	auto converter = make_shared<GNUToNASMConverter>(input);
-	string x86Code = converter->Convert();
-	cout << "OUTPUT\n" << x86Code << endl;
+	auto converter = make_shared<GNUToNASMConverter>();
+	cout << "Reading from " << inFileName << endl;
+	string x86Code = converter->ConvertFromFile(inFileName);
 	converter->WriteToFile(outFileName);
+	cout << "Successfully wrote to " << outFileName << endl;
 }

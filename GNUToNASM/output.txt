@@ -1,5 +1,34 @@
+push rax
+push rsi
+push r11
+mov rax,0
+mov rsi,1
+mov rdx,50
+compute_256:cmp rax,rsi
+jl isTrue4
+jmp isFalse4
+isTrue4:
 mov rax,rsi
-add rax,rdx
-add rax,80
-mov rax,80
-add rax,100
+add rax,rsi
+isFalse4:
+add rsi,rsi
+cmp rdx,rsi
+je isTrue5
+jmp isFalse5
+isTrue5:
+mov rdx,rsi
+sub rdx,rax
+isFalse5:
+cmp rax,100
+jl compute_256
+mov r11,2
+cmp rax,100
+jne isTrue6
+jmp isFalse6
+isTrue6:
+imul rax,r11
+isFalse6:
+pop r11
+pop rdx
+pop rsi
+ret

@@ -20,7 +20,7 @@ ConverterFactory::ConverterFactory(shared_ptr<GNULexer> & lexer)
 	  _CONDITIONAL   { {"eq", true}, {"ne", true}, {"lt", true}, 
 	  				   {"gt", true}, {"le", true}, {"ge", true} },
 	  _BRANCH 		 { {"b", true}, {"beq", true}, {"bne", true}, {"blt", true}, 
-					   {"bgt", true}, {"ble", true}, {"bge", true} },
+					   {"bgt", true}, {"ble", true}, {"bge", true}, {"bx", true} },
 	  _DATASIZE		 { {".data", true}, {".byte", true}, {".halfword", true}, 
 	  				   {".word", true}, {".doubleword", true} },
 	  _BITWISE		 { {"asr", true}, { "lsr", true }, { "lsl", true } }
@@ -39,6 +39,10 @@ shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 	if (lexeme[lexeme.length()-1] == ':')
 	{
 		return 0;
+	}
+	else if (lexeme == "cmp")
+	{
+		converter = make_shared<ComparisonConverter>(_lexer);
 	}
 	// Lexeme is data
 	else if (_DATASIZE.count(lexeme))

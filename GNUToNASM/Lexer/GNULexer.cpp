@@ -27,7 +27,7 @@ bool GNULexer::isValid(char character)
 // returns true if the given character is whitespaces
 bool GNULexer::isWhitespace(char character)
 {
-	return (character == ' ' || character == '\n');
+	return (character == ' ' || character == '\n' || character == '\t');
 }
 
 // skipWhitespace
