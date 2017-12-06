@@ -11,7 +11,7 @@ ldr r0,[r1]
 movle r0,#10
 add r0,r0,#20
 add r1,r0,#20
-add r0,20
+add r0,#20
 mov r1,r0
 
 

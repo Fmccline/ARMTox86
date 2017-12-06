@@ -6,6 +6,8 @@
 	main file for converting ARM assembly to x86 assembly
 */
 #include "Test.h"
+#include "GNUToNASM.h"
+#include "FileIO/fileIO.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -16,7 +18,6 @@ using std::shared_ptr;
 using std::make_shared;
 #include <exception>
 using std::exception;
-#include <cassert>
 
 void testMov()
 {
@@ -138,15 +139,26 @@ void testCondtionals()
 
 int main()
 {
-	// testMov();
-	// testArithmetic();
-	// testPush();
-	// testPop();
-	// //testCondtionals();
-	Fileinout fileinout;
-	auto converter = make_shared<GNUToNASMConverter>(fileinout.readfromfile("readme.txt"));
-	cout << "INPUT\n" << fileinout.readfromfile("readme.txt") << endl;
-	std::string stuff = converter->Convert();
-	fileinout.writetofile("output.txt", stuff);
-	cout << "OUTPUT\n" << fileinout.readfromfile("output.txt") << endl;
+	testMov();
+	testArithmetic();
+	testPush();
+	testPop();
+	// testCondtionals();
+	string inFileName = "readme.txt";
+	string outFileName = "output.txt";
+
+	Fileinout fileIO;
+
+	string input;
+	input += "add r0,r1,r2\n";
+	input += "add r0,r0,#80\n";
+	input += "add r0,#80,#100\n";
+
+	//input = fileIO.readfromfile(inFileName);
+	cout << "INPUT\n" << input << endl;
+
+	auto converter = make_shared<GNUToNASMConverter>(input);
+	string x86Code = converter->Convert();
+	cout << "OUTPUT\n" << x86Code << endl;
+	converter->WriteToFile(outFileName);
 }

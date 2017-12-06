@@ -38,15 +38,17 @@ shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 	// Lexeme is label
 	if (lexeme[lexeme.length()-1] == ':')
 	{
-
+		return 0;
 	}
-	if (_BRANCH.count(lexeme))
-	{
-		converter = make_shared<BranchConverter>(_lexer, lexeme);
-	}
+	// Lexeme is data
 	else if (_DATASIZE.count(lexeme))
 	{
 		converter = make_shared<DatasizeConverter>(_lexer, lexeme);
+	}
+	// Lexeme is branch instruction
+	else if (_BRANCH.count(lexeme))
+	{
+		converter = make_shared<BranchConverter>(_lexer, lexeme);
 	}
 	// Lexeme is instruction with conditional suffix (_BRANCH.count(lexeme) must be false)
 	else if (isConditional(lexeme))

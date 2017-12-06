@@ -1,31 +1,31 @@
 #include "fileIO.h"
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 
-std::string Fileinout::readfromfile(std::string textfile)
+std::string Fileinout::readfromfile(const std::string & textfile)
 {
   std::ifstream infile(textfile);
   if (infile.is_open())
 	{
-		std::stringstream buffer;
-		buffer << infile.rdbuf();
+    std::string fileContents, line;
+    while (std::getline(infile,line))
+    {
+      fileContents += line + '\n';
+    }
 		infile.close();
-		return buffer.str();
+		return fileContents;
 	}
-  else
-  {
-    std::cout << "Unable to open file";
-    return "";
-  }
+  
+  return "NULL";
 }
 
-void Fileinout::writetofile(std::string textfileout, std::string output)
+void Fileinout::writetofile(const std::string & textfileout, const std::string & output)
 {
-  std::ofstream convertdata;
-  convertdata.open(textfileout);
-  convertdata<<output;
-  convertdata.close();
-
+  std::ofstream convertdata(textfileout);
+  if (convertdata.is_open())
+  {
+    convertdata << output;
+    convertdata.close();
+  }
 }

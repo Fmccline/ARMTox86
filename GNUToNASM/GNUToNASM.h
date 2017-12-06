@@ -24,13 +24,13 @@ class GNUToNASMConverter : public Converter
 {
 private:
 	std::string _armCode;
-	Fileinout _fileInOut;
+	std::unique_ptr<Fileinout> _fileInOut;
 	std::shared_ptr<GNULexer> _lexer;
 	std::shared_ptr<ConverterFactory> _converterFactory;
 	std::string convertLexeme(std::string lexeme);
 public:
-	GNUToNASMConverter() {}
-	GNUToNASMConverter(std::string armCode):_armCode(armCode) {}
+	GNUToNASMConverter() { _fileInOut = std::make_unique<Fileinout>(); }
+	GNUToNASMConverter(std::string armCode):_armCode(armCode) { _fileInOut = std::make_unique<Fileinout>(); }
 	std::string ConvertFromString(const std::string & armCode);
 	std::string ConvertFromFile(const std::string & filename);
 	void WriteToFile(const std::string & filename);

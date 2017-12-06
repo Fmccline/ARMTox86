@@ -1,0 +1,5 @@
+mov rax,rsi
+add rax,rdx
+add rax,80
+mov rax,80
+add rax,100
