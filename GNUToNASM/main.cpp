@@ -13,7 +13,7 @@ using std::endl;
 using std::string;
 #include <memory>
 using std::shared_ptr;
-using std::make_shared; 
+using std::make_shared;
 #include <exception>
 using std::exception;
 #include <cassert>
@@ -75,7 +75,7 @@ void testArithmetic()
 	expectedOutput += "imul rax,100\n";
 
 	Test t(testName, input, expectedOutput);
-	cout << t.GetTestResults() << endl; 
+	cout << t.GetTestResults() << endl;
 }
 
 void testPush()
@@ -138,9 +138,15 @@ void testCondtionals()
 
 int main()
 {
-	testMov();
-	testArithmetic();
-	testPush();
-	testPop();
-	testCondtionals();
+	// testMov();
+	// testArithmetic();
+	// testPush();
+	// testPop();
+	// //testCondtionals();
+	Fileinout fileinout;
+	auto converter = make_shared<GNUToNASMConverter>(fileinout.readfromfile("readme.txt"));
+	cout << "INPUT\n" << fileinout.readfromfile("readme.txt") << endl;
+	std::string stuff = converter->Convert();
+	fileinout.writetofile("output.txt", stuff);
+	cout << "OUTPUT\n" << fileinout.readfromfile("output.txt") << endl;
 }
