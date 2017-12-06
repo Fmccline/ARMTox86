@@ -5,13 +5,14 @@ This program takes in a string of ARM assembly code, and it converts the code to
 mov  
 add, mul, sub  
 push, pop  
-
-### Instructions Needed:  
 branching (jumps)  
 comparisons (cmp)  
+
+### Instructions Needed:  
 bitwise  
-and more...  
+
+### Features Implemented:  
+file input & output
 
 ### Features In Progress:  
 GUI  
-file input & output  
