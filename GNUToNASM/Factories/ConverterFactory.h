@@ -16,6 +16,7 @@
 #include "../Converters/ArithmeticConverter.h"
 #include "../Converters/BranchConverter.h"
 #include "../Converters/DatasizeConverter.h"
+#include "../Converters/BitwiseConverter.h"
 #include "../Lexer/GNULexer.h"
 
 #include <memory>
@@ -34,6 +35,7 @@ private:
 	const std::unordered_map<std::string,bool> _CONDITIONAL;
 	const std::unordered_map<std::string,bool> _BRANCH;
 	const std::unordered_map<std::string,bool> _DATASIZE;
+	const std::unordered_map<std::string,bool> _BITWISE;
 	std::shared_ptr<GNULexer> _lexer;
 	bool isConditional(std::string lexeme);
 public:
@@ -42,4 +44,5 @@ public:
 };
 
 #endif // CONVERTER_FACTORY_H_INCLUDED
+
 

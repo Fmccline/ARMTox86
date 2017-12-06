@@ -22,7 +22,8 @@ ConverterFactory::ConverterFactory(shared_ptr<GNULexer> & lexer)
 	  _BRANCH 		 { {"b", true}, {"beq", true}, {"bne", true}, {"blt", true}, 
 					   {"bgt", true}, {"ble", true}, {"bge", true} },
 	  _DATASIZE		 { {".data", true}, {".byte", true}, {".halfword", true}, 
-	  				   {".word", true}, {".doubleword", true} }
+	  				   {".word", true}, {".doubleword", true} },
+	  _BITWISE		 { {"asr", true}, { "lsr", true }, { "lsl", true } }
 	  				   
 {
 	_lexer = lexer; 
@@ -71,6 +72,10 @@ shared_ptr<Converter> ConverterFactory::MakeConverter(string lexeme)
 	{
 		converter = make_shared<ArithmeticConverter>(_lexer,lexeme);
 	}
+	else if (_BITWISE.count(lexeme)) 
+	{
+		converter = make_shared<BitwiseConverter>(_lexer,lexeme);
+	}
 	return converter;
 }
 
@@ -84,4 +89,5 @@ bool ConverterFactory::isConditional(std::string lexeme)
 	string conditional = lexeme.substr(lexeme.length()-2, 2);
 	return _CONDITIONAL.count(conditional);
 }
+
 
