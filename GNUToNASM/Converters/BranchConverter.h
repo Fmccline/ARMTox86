@@ -3,7 +3,7 @@
 	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	04 Dec 2017
 
-	cpp file for class that converts branch instructions
+	header file for class that converts branch instructions
 	MADE BY JASON
 */
 
@@ -16,7 +16,6 @@
 #include <memory>
 #include <string>
 
-// Currently only converts signed values
 class BranchConverter : public Converter
 {
 private:

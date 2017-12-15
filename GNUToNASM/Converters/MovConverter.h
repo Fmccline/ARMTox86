@@ -3,7 +3,7 @@
 	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	28 Nov 2017
 
-	cpp file for class that converts the mov instruction
+	header file for class that converts the mov instruction
 */
 
 #ifndef MOV_CONVERTER_H_INCLUDED

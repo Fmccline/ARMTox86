@@ -3,14 +3,10 @@ BranchConverter.cpp
 Authors: Frank Cline, Jason Hsi, Brandon Abbot
 04 Dec 2017
 
-cpp file for class for branch instructions
+cpp file for class for data conversions
 MADE BY JASON
 */
 #include "DatasizeConverter.h"
-
-#include <iostream>
-using std::cout;
-using std::endl;
 
 DatasizeConverter::DatasizeConverter(std::shared_ptr<GNULexer>& lexer, std::string datasize)
 {

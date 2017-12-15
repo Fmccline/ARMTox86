@@ -3,7 +3,7 @@ BranchConverter.h
 Authors: Frank Cline, Jason Hsi, Brandon Abbot
 04 Dec 2017
 
-cpp file for class that converts branch instructions
+cpp file for class for ARM data conversions
 MADE BY JASON
 */
 

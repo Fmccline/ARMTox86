@@ -3,7 +3,7 @@
 	Authors: Frank Cline, Jason Hsi, Brandon Abbot
 	04 Dec 2017
 
-	cpp file for class for branch instructions
+	cpp file for class for bitwise shift instructions
 	MADE BY JASON
 */
 

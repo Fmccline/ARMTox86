@@ -8,11 +8,6 @@
 #include "LexemeConverter.h"
 using std::string;
 
-// TODO: Delete include
-#include <iostream>
-using std::cout;
-using std::endl;
-
 LexemeConverter::LexemeConverter(string lexeme) : _lexeme(lexeme), 
 	_registers
 	{

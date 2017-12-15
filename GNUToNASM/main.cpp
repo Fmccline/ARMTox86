@@ -7,7 +7,6 @@
 */
 #include "Test.h"
 #include "GNUToNASM.h"
-#include "FileIO/fileIO.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -141,11 +140,6 @@ void testCondtionals()
 
 int main()
 {
-	// testMov();
-	// testArithmetic();
-	// testPush();
-	// testPop();
-	// testCondtionals();
 	string inFileName = "input.txt";
 	string outFileName = "output.txt";
 

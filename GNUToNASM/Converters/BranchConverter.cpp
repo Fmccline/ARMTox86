@@ -19,7 +19,7 @@ BranchConverter::BranchConverter(shared_ptr<GNULexer> & lexer, string instructio
 }
 
 // Convert
-// converts the ARM add instruction to x86
+// converts ARM branch instructions to x86
 string BranchConverter::Convert()
 {
 	if (_instruction == "bx" && _param0 == "lr")
